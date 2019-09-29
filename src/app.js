@@ -3,7 +3,7 @@ const fs = require("fs");
 const express = require("express");
 const app = express();
 // const https = require("https");
-const http = require('http');
+const http = require("http");
 // const server = https.createServer(
 //   {
 //     key: fs.readFileSync(path.join(__dirname, "keys", "server.key")),
@@ -16,6 +16,8 @@ const io = require("socket.io")(server);
 const port = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, "public")));
+
+let rooms = [];
 
 io.on("connection", function(socket) {
   console.log("a user connected");
@@ -31,11 +33,13 @@ io.on("connection", function(socket) {
     if (numClients === 0) {
       socket.join(room);
       socket.emit("created", room);
+
+      rooms.push(room);
     } else if (numClients === 1) {
       socket.join(room);
       socket.emit("joined", room);
     } else {
-      socket.emit("full", room);
+      socket.emit("full", `Sorry room '${room}' are full.`);
     }
   });
 

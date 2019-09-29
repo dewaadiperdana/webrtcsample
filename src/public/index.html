@@ -8,14 +8,14 @@
   </head>
   <body>
     <div id="select-room">
-      <label for="">Type room number</label>
+      <label for="">Type room number. Maximum for 2 people</label>
       <input id="room-number" type="text" />
       <button id="go-room">Go</button>
     </div>
 
     <div style="display: none;" id="consulting-room">
-      <video id="local-video" autoplay></video>
-      <video id="remote-video" autoplay></video>
+      <video id="local-video" autoplay width="400" height="400"></video>
+      <!-- <video id="remote-video" autoplay width="400" height="400"></video> -->
     </div>
 
     <script src="/socket.io/socket.io.js"></script>
