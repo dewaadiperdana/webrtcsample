@@ -2,14 +2,16 @@ const path = require("path");
 const fs = require("fs");
 const express = require("express");
 const app = express();
-const https = require("https");
-const server = https.createServer(
-  {
-    key: fs.readFileSync(path.join(__dirname, "keys", "server.key")),
-    cert: fs.readFileSync(path.join(__dirname, "keys", "server.cert"))
-  },
-  app
-);
+// const https = require("https");
+const http = require('http');
+// const server = https.createServer(
+//   {
+//     key: fs.readFileSync(path.join(__dirname, "keys", "server.key")),
+//     cert: fs.readFileSync(path.join(__dirname, "keys", "server.cert"))
+//   },
+//   app
+// );
+const server = http.createServer(app);
 const io = require("socket.io")(server);
 const port = process.env.PORT || 3000;
 
