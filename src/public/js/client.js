@@ -913,7 +913,7 @@ var iceServers = {
   ]
 };
 
-var streamConstraints = { audio: false, video: true };
+var streamConstraints = { audio: true, video: true };
 var isCaller;
 
 var socket = io();
